@@ -1,0 +1,10 @@
+[package]
+name = "cargo-bin"
+edition = "2024"
+license = "MIT"
+
+[lints.clippy]
+pedantic = "deny"
+
+[dependencies]
+cargo-run-bin = { version = "1.7.4", features = ["cli"] }

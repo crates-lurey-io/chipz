@@ -1,0 +1,41 @@
+[package]
+name = "chipz"
+edition = "2024"
+license = "MIT"
+description = "CHIP-8 Virtual Machine"
+repository = "https://github.com/crates-lurey-io/chipz"
+version = "0.0.0-reserved"
+
+[lints.clippy]
+pedantic = "deny"
+
+[target.'cfg(target_arch = "wasm32")'.lib]
+crate-type = ["cdylib"]
+
+[workspace]
+members = ["tools/cargo-bin"]
+
+[workspace.metadata.bin]
+cargo-nextest = { version = "0.9.98", locked = true }
+cargo-llvm-cov = { version = "0.6.16", locked = true }
+just = { version = "1.40.0" }
+taplo-cli = { version = "0.10.0", bins = ["taplo"] }
+
+# Wasm
+cargo-watch = { version = "8.5.3" }
+miniserve = { version = "0.16.0" }
+wasm-pack = { version = "0.13.1" }
+
+[dependencies]
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+console_error_panic_hook = { version = "0.1.7", optional = true }
+wasm-bindgen = "0.2.100"
+
+[dev-dependencies]
+
+[target.'cfg(target_arch = "wasm32")'.dev-dependencies]
+wasm-bindgen-test = { version = "0.3.50" }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dev-dependencies]
+cargo-run-bin = { version = "1.7.4", features = ["cli"] }
