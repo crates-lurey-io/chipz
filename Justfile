@@ -2,21 +2,7 @@ _default:
     cargo just --list -u
 
 init:
-    cargo binstall taplo-cli
     cargo tool --install
-
-build-wasm:
-    cargo tool wasm-pack build --target web
-
-serve:
-    cargo just serve-watch &
-    cargo just serve-preview
-
-serve-watch:
-    cargo tool cargo-watch -x 'tool wasm-pack build --dev --target web'
-
-serve-preview:
-    cargo tool miniserve . --index "index.html" -p 8080
 
 lint: lint-check
 
@@ -59,14 +45,10 @@ test *ARGS:
 test-doc *ARGS:
     cargo test {{ARGS}} --doc
 
-
-test-wasm *ARGS:
-    cargo tool wasm-pack test {{ARGS}}
-
 test-all:
     cargo just test --all-features
     cargo just test-doc --all-features
-    cargo just test-wasm --chrome --headless
+
 coverage *ARGS:
     cargo tool cargo-llvm-cov --open
 

@@ -7,4 +7,6 @@ license = "MIT"
 pedantic = "deny"
 
 [dependencies]
-cargo-run-bin = { version = "1.7.4", features = ["cli"] }
+cargo-run-bin = { git = "https://github.com/matanlurey/cargo-run-bin.git", branch = "forked", features = [
+  "cli",
+] }
